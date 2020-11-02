@@ -54,7 +54,7 @@ const Rating = ({ value,text,color}) => {
                 : 'far fa-star'
             }/>
             </span>
-            <span>{text && text}</span>
+            <span className='ml-2'>{text && text}</span>
         </div>
     );
 }
