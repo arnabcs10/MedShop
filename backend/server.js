@@ -4,9 +4,12 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const colors = require('colors');
 
-
 // Import Routes
 const productRoutes = require('./routes/productRoutes');
+
+//Middlewares
+const { notFound,errorHandler} = require('./middlewares/errorMiddleware');
+
 
 //App config
 const app = express();
@@ -24,6 +27,11 @@ app.get('/',(req,res)=>{
 //api/products/
 app.use('/api/products/',productRoutes);
 
+//error handler
+
+app.use(notFound);
+
+app.use(errorHandler);
 
 
 
