@@ -6,6 +6,7 @@ const colors = require('colors');
 
 // Import Routes
 const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 //Middlewares
 const { notFound,errorHandler} = require('./middlewares/errorMiddleware');
@@ -14,6 +15,7 @@ const { notFound,errorHandler} = require('./middlewares/errorMiddleware');
 //App config
 const app = express();
 dotenv.config();
+app.use(express.json()) //body-parser
 
 //Database connection
 connectDB();
@@ -27,9 +29,10 @@ app.get('/',(req,res)=>{
 //api/products/
 app.use('/api/products/',productRoutes);
 
+app.use('/api/users',userRoutes);
 //error handler
 
-app.use(notFound);
+// app.use(notFound);
 
 app.use(errorHandler);
 
