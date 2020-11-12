@@ -19,7 +19,8 @@ const { notFound,errorHandler} = require('./middlewares/errorMiddleware');
 const app = express();
 dotenv.config();
 app.use(express.json()) //body-parser
-app.use('/uploads',express.static(path.join(__dirname,'/uploads')));
+const folder = path.resolve();
+app.use('/uploads',express.static(path.join(folder,'/uploads')));
 
 //Database connection
 connectDB();
