@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 //contoller
-const { getProducts, getProductById, deleteProduct, createProduct,updateProduct } = require('../controllers/productController');
+const { getProducts, getProductById, deleteProduct, createProduct,updateProduct, createdProductReview } = require('../controllers/productController');
 //Middlewares
 const { protect, admin } = require('../middlewares/authMiddleware');
 
@@ -11,6 +11,7 @@ const { protect, admin } = require('../middlewares/authMiddleware');
 // @access Public
 router.route('/').get(getProducts);
 router.route('/').post(protect, admin, createProduct);
+
 // @desc   Fetch single product
 // @route  GET /api/products/:id
 // @access Public
@@ -18,6 +19,6 @@ router.route('/:id').get(getProductById);
 router.route('/:id').delete(protect, admin, deleteProduct);
 router.route('/:id').put(protect, admin, updateProduct);
 
-
+router.route('/:id/reviews').post(protect, createdProductReview);
 
 module.exports = router;

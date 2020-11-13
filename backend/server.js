@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const path = require('path');
 const colors = require('colors');
+const morgan = require('morgan');
 
 // Import Routes
 const productRoutes = require('./routes/productRoutes');
@@ -17,6 +18,10 @@ const { notFound,errorHandler} = require('./middlewares/errorMiddleware');
 
 //App config
 const app = express();
+if(process.env.NODE_ENV === 'development'){
+    app.use(morgan('dev'));
+}
+
 dotenv.config();
 app.use(express.json()) //body-parser
 const folder = path.resolve();
