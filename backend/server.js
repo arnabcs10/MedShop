@@ -27,14 +27,14 @@ app.use(express.json()) //body-parser
 const folder = path.resolve();
 app.use('/uploads',express.static(path.join(folder,'/uploads')));
 
+
+
 //Database connection
 connectDB();
 
 //Routes
 //Home
-app.get('/',(req,res)=>{
-    res.send("API is running...");
-});
+
 
 //api/products/
 app.use('/api/products/',productRoutes);
@@ -44,8 +44,21 @@ app.use('/api/users',userRoutes);
 app.use('/api/orders', orderRoutes);
 
 app.use('/api/upload', uploadRoutes);
-//error handler
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(folder,'/frontend/build')));
+
+    app.get('*',(req, res) => res.sendFile(path.resolve(folder, 'frontend','build','index.html')));
+    
+}else{
+    app.get('/',(req,res)=>{
+        res.send("API is running...");
+    });
+}
+
+
+
+//error handler
 app.use(notFound);
 
 app.use(errorHandler);
