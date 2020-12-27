@@ -1,5 +1,5 @@
 {
-  "name": "proshop",
+  "name": "medshop",
   "version": "1.0.0",
   "description": "Web app for small scale shops",
   "main": "server.js",
