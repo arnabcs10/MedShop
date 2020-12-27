@@ -120,7 +120,7 @@ const OrderScreen = ({match, history}) => {
                                                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                                                 </Col>
                                                 <Col md={4}>
-                                                    {item.qty} x ${item.price} = ${ item.price * item.qty}
+                                                    {item.qty} x Rs.{item.price} = Rs.{ item.price * item.qty}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
@@ -140,25 +140,25 @@ const OrderScreen = ({match, history}) => {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Items Price</Col>
-                                    <Col>${order.itemsPrice}</Col>
+                                    <Col>Rs.{order.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Shipping Price</Col>
-                                    <Col>${order.taxPrice}</Col>
+                                    <Col>Rs.{order.taxPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Tax Price</Col>
-                                    <Col>${order.shippingPrice}</Col>
+                                    <Col>Rs.{order.shippingPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Total Price</Col>
-                                    <Col>${order.totalPrice}</Col>
+                                    <Col>Rs.{order.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             {!order.isPaid && (
